@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-dark: #101010;
+    --accent-red: #D93636;
+    --text-light: #F2EEE8;
+    --text-muted: #858585;
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #101010;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D93636;
+  }
+}
+
+/* CAD Grid Background */
+.bg-cad-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.bg-cad-dots {
+  background-image: radial-gradient(rgba(217, 54, 54, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Reference Video Typography Treatments */
+.text-stroke-red {
+  -webkit-text-stroke: 1.5px #D93636;
+  color: transparent;
+  transition: all 0.3s ease;
+}
+
+.text-stroke-red:hover {
+  color: rgba(217, 54, 54, 0.15);
+}
+
+.text-stroke-red-solid {
+  -webkit-text-stroke: 1px #D93636;
+  color: #D93636;
+}
+
+/* Figma-style Selection Box */
+.figma-selection {
+  position: relative;
+  border: 1px solid #3B82F6;
+  background: rgba(59, 130, 246, 0.04);
+}
+
+.figma-selection::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  border: 1px solid #3B82F6;
+}
+
+.figma-selection::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  border: 1px solid #3B82F6;
+}
+
+/* CAD Ruler Tick Marks */
+.cad-ruler {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 19px,
+    rgba(217, 54, 54, 0.25) 19px,
+    rgba(217, 54, 54, 0.25) 20px
+  );
+}
+
+.cad-ruler-major {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 79px,
+    #D93636 79px,
+    #D93636 80px
+  );
+}
+
+/* Smooth motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
