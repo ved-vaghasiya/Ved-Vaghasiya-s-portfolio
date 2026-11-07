@@ -180,46 +180,47 @@ export const portfolioData = {
 
   collaborativeAgents: [
     {
-      id: "ved",
-      name: "VED",
-      color: "#D93636",
-      role: "Primary Architect & Identity",
-      initialPos: { x: 38, y: 32 }
-    },
-    {
       id: "design",
       name: "DESIGN",
       color: "#3B82F6",
-      role: "Typography & Layout Engine",
-      initialPos: { x: 74, y: 22 }
+      role: "Frames & Layouts",
+      initialPos: { x: 15, y: -10 }
     },
     {
-      id: "code",
-      name: "CODE",
+      id: "typo",
+      name: "TYPO",
+      color: "#F59E0B",
+      role: "Typography & Headings",
+      initialPos: { x: 50, y: -10 }
+    },
+    {
+      id: "visual",
+      name: "VISUAL",
+      color: "#EC4899",
+      role: "Assets & Portrait Placement",
+      initialPos: { x: 90, y: -10 }
+    },
+    {
+      id: "layout",
+      name: "LAYOUT",
       color: "#10B981",
-      role: "Components & Tech Stack",
-      initialPos: { x: 22, y: 64 }
+      role: "Alignment & Spacing",
+      initialPos: { x: -10, y: 50 }
     },
     {
       id: "motion",
       name: "MOTION",
-      color: "#F59E0B",
-      role: "Transitions & Choreography",
-      initialPos: { x: 82, y: 68 }
+      color: "#8B5CF6",
+      role: "Visual Transitions",
+      initialPos: { x: 110, y: 70 }
     },
     {
       id: "build",
       name: "BUILD",
-      color: "#EC4899",
-      role: "System Assembly & Structure",
-      initialPos: { x: 50, y: 80 }
-    },
-    {
-      id: "pixel",
-      name: "PIXEL",
-      color: "#8B5CF6",
-      role: "Micro-interactions & Precision",
-      initialPos: { x: 62, y: 44 }
+      color: "#D93636",
+      role: "Component Assembly",
+      initialPos: { x: 50, y: 110 }
     }
   ]
 };
+

@@ -10,10 +10,13 @@ import { Footer } from './components/Footer';
 import { CadRuler } from './components/CadRuler';
 import { MultiCursorEngine } from './components/MultiCursor/MultiCursorEngine';
 import { BottomAgentDock } from './components/MultiCursor/BottomAgentDock';
+import { StitchLiveConstruction } from './components/StitchEngine/StitchLiveConstruction';
 
 export default function App() {
   const [currentSection, setCurrentSection] = useState('hero');
   const [isSimulating, setIsSimulating] = useState(true);
+  const [isBuilding, setIsBuilding] = useState(true);
+  const [replayKey, setReplayKey] = useState(0);
 
   // Smooth scroll handler
   const handleNavigate = (sectionId) => {
@@ -22,6 +25,14 @@ export default function App() {
       el.scrollIntoView({ behavior: 'smooth' });
       setCurrentSection(sectionId);
     }
+  };
+
+  // Replay live Stitch construction
+  const handleReplayConstruction = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setCurrentSection('hero');
+    setReplayKey((k) => k + 1);
+    setIsBuilding(true);
   };
 
   // Section Observer for active indicator & cursor choreography
@@ -55,14 +66,28 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-[#101010] text-[#F2EEE8] selection:bg-[#D93636] selection:text-white">
+      {/* GOOGLE STITCH LIVE GENERATIVE CONSTRUCTION EXPERIENCE */}
+      {isBuilding && (
+        <StitchLiveConstruction
+          key={replayKey}
+          onConstructionComplete={() => setIsBuilding(false)}
+        />
+      )}
+
       {/* CAD Architectural Ruler Guide along left margin */}
       <CadRuler currentSection={currentSection} />
 
-      {/* Signature Multi-Cursor Engine */}
-      <MultiCursorEngine currentSection={currentSection} />
+      {/* Signature Multi-Cursor Engine (Ambient mode after construction) */}
+      {!isBuilding && isSimulating && (
+        <MultiCursorEngine currentSection={currentSection} />
+      )}
 
       {/* Main Top Navigation */}
-      <Navbar currentSection={currentSection} onNavigate={handleNavigate} />
+      <Navbar
+        currentSection={currentSection}
+        onNavigate={handleNavigate}
+        onReplayBuild={handleReplayConstruction}
+      />
 
       {/* Page Content Flow */}
       <main className="relative pl-0 lg:pl-8">
@@ -81,6 +106,7 @@ export default function App() {
       <BottomAgentDock
         isSimulating={isSimulating}
         onToggleSimulation={() => setIsSimulating(!isSimulating)}
+        onReplayConstruction={handleReplayConstruction}
       />
     </div>
   );

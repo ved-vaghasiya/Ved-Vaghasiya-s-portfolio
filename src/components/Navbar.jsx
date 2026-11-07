@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { portfolioData } from '../data/portfolioData';
 import { Download, ExternalLink, Menu, X } from 'lucide-react';
 
-export const Navbar = ({ currentSection, onNavigate }) => {
+export const Navbar = ({ currentSection, onNavigate, onReplayBuild }) => {
   const [currentTime, setCurrentTime] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -72,11 +72,21 @@ export const Navbar = ({ currentSection, onNavigate }) => {
         </nav>
 
         {/* Right side telemetry & Resume */}
-        <div className="hidden lg:flex items-center gap-4 text-xs font-mono">
+        <div className="hidden lg:flex items-center gap-3 text-xs font-mono">
           <div className="flex items-center gap-1.5 text-neutral-400 text-[11px]">
             <span className="text-neutral-600">AHMEDABAD</span>
             <span className="text-accent-red">{currentTime} IST</span>
           </div>
+
+          {onReplayBuild && (
+            <button
+              onClick={onReplayBuild}
+              className="px-2.5 py-1 bg-accent-red/10 hover:bg-accent-red/20 text-accent-red border border-accent-red/30 rounded text-[11px] transition-colors cursor-pointer font-semibold flex items-center gap-1"
+              title="Replay Google Stitch Live UI Construction"
+            >
+              <span>[REBUILD LIVE]</span>
+            </button>
+          )}
 
           <a
             href={portfolioData.personal.resumeUrl}
@@ -135,3 +145,4 @@ export const Navbar = ({ currentSection, onNavigate }) => {
     </header>
   );
 };
+

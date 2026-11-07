@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { portfolioData } from '../../data/portfolioData';
 
-export const BottomAgentDock = ({ activeAgentId, onToggleSimulation, isSimulating }) => {
+export const BottomAgentDock = ({ activeAgentId, onToggleSimulation, isSimulating, onReplayConstruction }) => {
   const [fps, setFps] = useState('60');
   const [activeCount, setActiveCount] = useState(6);
 
@@ -44,22 +44,32 @@ export const BottomAgentDock = ({ activeAgentId, onToggleSimulation, isSimulatin
         <span className="text-neutral-400">18 LAYERS</span>
         <span className="text-neutral-600">|</span>
         <span className="px-1.5 py-0.5 rounded bg-accent-red/20 text-accent-red font-medium text-[10px]">
-          STUDIO ACTIVE
+          STITCH LIVE
         </span>
         <span className="text-neutral-600">|</span>
         <span className="text-neutral-400">{fps} FPS</span>
-        <span className="text-neutral-600">|</span>
-        <span className="text-neutral-500">1.6k OPS/S</span>
       </div>
+
+      {/* Replay Live Generation Button */}
+      {onReplayConstruction && (
+        <button
+          onClick={onReplayConstruction}
+          title="Replay Stitch Live Website Construction"
+          className="ml-1 pl-2 border-l border-neutral-800 text-[10px] text-accent-red hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-bold"
+        >
+          <span>[REPLAY BUILD]</span>
+        </button>
+      )}
 
       {/* Interactive Toggle */}
       <button
         onClick={onToggleSimulation}
-        title={isSimulating ? "Pause cursor choreography" : "Resume cursor choreography"}
-        className="ml-1 pl-2 border-l border-neutral-800 text-[10px] text-neutral-400 hover:text-white transition-colors"
+        title={isSimulating ? "Pause ambient cursors" : "Resume ambient cursors"}
+        className="pl-2 border-l border-neutral-800 text-[10px] text-neutral-400 hover:text-white transition-colors cursor-pointer"
       >
-        [{isSimulating ? "CHOREO: ON" : "CHOREO: OFF"}]
+        [{isSimulating ? "CURSORS: ON" : "CURSORS: OFF"}]
       </button>
     </aside>
   );
 };
+
